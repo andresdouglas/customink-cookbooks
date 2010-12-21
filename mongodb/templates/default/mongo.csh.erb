@@ -1,0 +1,3 @@
+if ( "${path}" !~ *<%= @node[:mongodb][:root] %>/bin* ) then
+	set path = ( <%= @node[:mongodb][:root] %>/bin $path )
+endif
