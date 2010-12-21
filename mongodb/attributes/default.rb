@@ -18,11 +18,11 @@ set_unless[:mongodb][:pid_dir] = "/var/run"
 set_unless[:mongodb][:run_backups] = false
 set_unless[:mongodb][:rest] = false
 
-set_unless[:mongodb][:monit][:enabled] = true
+set_unless[:mongodb][:monit][:enabled] = false
 set_unless[:mongodb][:monit][:max_memory] = 1024 #MB
 set_unless[:mongodb][:monit][:max_cpu] = 80 #%
 
-set_unless[:mongodb][:mongods] = [{"mongod" => "default", "port" => "27017", "replication_set" => "default", "run_backups" => "ture"}]
+set_unless[:mongodb][:mongods] = [{"mongod" => "default", "port" => "27017", "replication_set" => "default", "run_backups" => "true"}]
 
 # Typical mongod ports:
 # * Standalone mongod : 27017
