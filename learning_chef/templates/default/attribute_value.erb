@@ -1,0 +1,15 @@
+My string:  <%= node.my_string %>
+My integer: <%= node.my_integer %>
+My array contains:
+  <% node.my_array.each do |element| %>
+    * <%=element%>
+  <% end %>
+  
+My hash contains:
+  <% node.my_hash.each_pair do |key,value| %>
+    <%= key %> is <%= value %>
+  <% end %>
+  
+Recipe attribute = <%= node.recipe.my_attribute %>
+
+Using dot notation:  <%= node.my_other_string%>

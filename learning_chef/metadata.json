@@ -1,0 +1,29 @@
+{
+  "recipes": {
+  },
+  "conflicting": {
+  },
+  "license": "All rights reserved",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "providing": {
+  },
+  "maintainer": "CustomInk, LLC",
+  "replacing": {
+  },
+  "description": "Installs/Configures learning_chef",
+  "platforms": {
+  },
+  "maintainer_email": "nharvey@customink.com",
+  "groupings": {
+  },
+  "attributes": {
+  },
+  "recommendations": {
+  },
+  "dependencies": {
+  },
+  "name": "learning_chef",
+  "version": "0.0.1",
+  "suggestions": {
+  }
+}
