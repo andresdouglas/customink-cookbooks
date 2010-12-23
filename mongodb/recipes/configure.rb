@@ -5,10 +5,11 @@ mongods = node[:mongodb][:mongods]
 mongods.uniq.compact.each do |instance|
 # mongods.each do |instance|
 
-  mongod          = instance["mongod"]
-  port            = instance["port"]
-  replication_set = instance["replication_set"]
-  
+  mongod              = instance["mongod"]
+  port                = instance["port"]
+  replication_set     = instance["replication_set"]
+  additional_settings = instance["additional_settings"]
+    
   # get rest setting from the instance, or the node
   rest = instance["rest"]
   if rest.nil? || rest == ""
@@ -84,11 +85,12 @@ mongods.uniq.compact.each do |instance|
   template "/etc/mongodb/mongodb_#{mongod}.conf" do
     source "mongodb.conf.erb"
     variables(
-      :database_path   => "#{node[:mongodb][:data_dir]}/#{mongod}",
-      :port            => port,
-      :log_path        => "#{node[:mongodb][:log_dir]}/#{mongod}",
-      :rest            => rest,
-      :replication_set => replication_set
+      :database_path       => "#{node[:mongodb][:data_dir]}/#{mongod}",
+      :port                => port,
+      :log_path            => "#{node[:mongodb][:log_dir]}/#{mongod}",
+      :rest                => rest,
+      :replication_set     => replication_set,
+      :additional_settings => additional_settings
     )
     owner "root"
     group "root"

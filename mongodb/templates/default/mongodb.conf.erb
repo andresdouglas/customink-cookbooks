@@ -13,4 +13,10 @@ noauth = true
 
 replSet = <%= @replication_set %>
 
-rest = <%= @node[:mongodb][:rest] %>
+rest = <%= @rest %>
+
+<% if  @additional_settings &&  @additional_settings.size > 0 %>
+  <% @additional_settings.each_pair do |k,v| %>
+    <%= k %> = <%= v %>
+  <% end %>
+<% end %>

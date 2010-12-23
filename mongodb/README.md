@@ -13,7 +13,7 @@ Attributes
 * [:mongodb][:mongods][:run_backups] - whether or not to run hourly backups
 * [:mongodb][:mongods][:rest] - whether or not to make the HTTP Admin interface available
 * [:mongodb][:mongods][:monit] - whether or not to configure monit scripts
-
+* [:mongodb][:mongods][:additional_settings] - a hash of additional setting for the mongo configuration file
   
 Usage
 =====
