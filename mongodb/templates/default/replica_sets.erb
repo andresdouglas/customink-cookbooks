@@ -1,0 +1,46 @@
+<%
+sets = []
+@replica_sets.each do |set|
+  set.each_key do |group|
+    sets.push(group)
+  end
+end
+
+sets.uniq.compact.each do |set|
+  %>
+  /**********************************************************************
+   ** config for <%= set %>
+   *********************************************************************/
+  
+  config = {
+    _id: '<%= set %>',
+    members: [
+    <%
+      member_count = -1
+      @replica_sets.each do |h|
+        h.each_key do |group|
+          if group == set
+            h.each_pair do |k,v|
+              %>
+              {_id: <%= member_count = member_count + 1 %>, host: '<%= v['host'] %>:<%= v['port'] %>'}
+              <%
+            end
+          end 
+        end
+      end
+    %>
+    ]
+  } 
+  /**********************************************************************
+
+  NB:  Perhaps one of these members is actually an arbiter?
+
+  remove it from the list of members and add this at the end of the file:
+
+  rs.addArb("host:port");
+
+  **********************************************************************/ 
+  rs.initiate(config)
+  <%
+end
+%>
