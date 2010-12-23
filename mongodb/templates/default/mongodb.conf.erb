@@ -3,6 +3,7 @@
 #
 
 dbpath = <%= @database_path %>
+#bind_ip = <%= @node[:mongodb][:bind_address] %>
 port = <%= @port %>
 
 logpath = <%= @log_path %>/mongodb.log
@@ -10,8 +11,6 @@ logappend = true
 
 noauth = true
 
-rest = <%= @node[:mongodb][:rest] %>
-
 replSet = <%= @replication_set %>
 
-#bind_ip = <%= @node[:mongodb][:bind_address] %>
+rest = <%= @node[:mongodb][:rest] %>

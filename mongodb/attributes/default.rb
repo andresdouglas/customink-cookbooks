@@ -22,7 +22,7 @@ set_unless[:mongodb][:monit][:enabled] = false
 set_unless[:mongodb][:monit][:max_memory] = 1024 #MB
 set_unless[:mongodb][:monit][:max_cpu] = 80 #%
 
-set_unless[:mongodb][:mongods] = [{"mongod" => "default", "port" => "27017", "replication_set" => "default", "run_backups" => "true"}]
+set_unless[:mongodb][:mongods] = []
 
 # Typical mongod ports:
 # * Standalone mongod : 27017
