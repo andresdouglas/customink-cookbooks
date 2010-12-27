@@ -1,6 +1,9 @@
 #
 # Cookbook Name:: multi-mongodb
 # Recipe:: install
+#
+# Copyright 2010, CustomInk, LLC
+#
 
 group node[:mongodb][:group] do
   action [ :create, :manage ]

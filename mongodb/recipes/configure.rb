@@ -1,9 +1,11 @@
 #
-# Cookbook Name:: multi-mongodb
+# Cookbook Name:: mongodb
 # Recipe:: configure
+#
+# Copyright 2010, CustomInk, LLC
+#
 mongods = node[:mongodb][:mongods]
 mongods.uniq.compact.each do |instance|
-# mongods.each do |instance|
 
   mongod              = instance["mongod"]
   port                = instance["port"]
@@ -16,12 +18,6 @@ mongods.uniq.compact.each do |instance|
     rest = node.mongodb.rest
   end
   
-  # get monit from the instance, or the node
-  monit = instance["monit"]
-  if monit.nil? || monit == ""
-    monit = node.mongodb.monit.enabled
-  end
-    
   ["#{node[:mongodb][:log_dir]}/#{mongod}", 
    "#{node[:mongodb][:data_dir]}/#{mongod}",
    "#{node[:mongodb][:backup_dir]}/#{mongod}", 
@@ -100,21 +96,5 @@ mongods.uniq.compact.each do |instance|
   
   service "mongodb_#{mongod}" do
     action :start
-  end
-  
-  if monit == "true" || monit == true
-    # set-up monit
-    template "/etc/monit.d/monit_mongo_#{mongod}" do
-      source "monit_mongo.erb"
-      variables(
-        :database_path   => "#{node[:mongodb][:data_dir]}/#{mongod}",
-        :mongod          => mongod,
-        :port            => port
-      )
-      owner "root"
-      group "root"
-      mode 0755
-      notifies :restart, resources(:service => "monit")
-    end
   end
 end

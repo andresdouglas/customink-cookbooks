@@ -1,8 +1,0 @@
-check process mongo_<%= @mongod %> with pidfile <%= @database_path %>/mongod.lock
-  start program "/etc/init.d/mongodb_<%= @mongod %> start"
-  stop program "/etc/init.d/mongodb_<%= @mongod %> stop"
-  if failed port <%= @port %> then restart
-  if totalmem is greater than <%= @node[:mongodb][:monit][:max_memory] %> MB for 5 cycles then alert
-  if cpu is greater than <%= @node[:mongodb][:monit][:max_cpu] %>% for 3 cycles then alert
-  
-  if 5 restarts within 5 cycles then timeout

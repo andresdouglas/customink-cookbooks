@@ -1,10 +1,13 @@
 #
-# Cookbook Name:: multi-mongodb
+# Cookbook Name:: mongodb
 # Recipe:: configure_backups
+#
+# Copyright 2010, CustomInk, LLC
+#
 
 # Add in the backup script
 mongods = node[:mongodb][:mongods]
-mongods.each do |instance|
+mongods.uniq.compact.each do |instance|
   mongod          = instance["mongod"]
   port            = instance["port"]
   run_backups     = instance["run_backups"]
