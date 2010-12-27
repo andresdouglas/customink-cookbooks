@@ -6,6 +6,7 @@ group node[:mongodb][:group] do
   action [ :create, :manage ]
 end
 
+
 user node[:mongodb][:user] do
   comment "MongoDB Server"
   gid node[:mongodb][:group]
@@ -15,7 +16,7 @@ end
 
 
 if !(::File.exists?("/tmp/#{node[:mongodb][:file_name]}.tgz")) && !(::File.directory?(node[:mongodb][:root]))
-  Chef::Log.info "Downloading MongoDB from #{node[:mongodb][:url]}. This could take a while..."
+  Chef::Log.info "Downloading MongoDB (#{node[:mongodb][:file_name]}.tgz) from #{node[:mongodb][:url]}. This could take a while..."
   remote_file "/tmp/#{node[:mongodb][:file_name]}.tgz" do
     source node[:mongodb][:url]
     not_if { ::File.exists?("/tmp/#{node[:mongodb][:file_name]}.tgz") }

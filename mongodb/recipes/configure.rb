@@ -2,13 +2,26 @@
 # Cookbook Name:: multi-mongodb
 # Recipe:: configure
 mongods = node[:mongodb][:mongods]
-mongods.each do |instance|
-  mongod          = instance["mongod"]
-  port            = instance["port"]
-  replication_set = instance["replication_set"]
+mongods.uniq.compact.each do |instance|
+# mongods.each do |instance|
+
+  mongod              = instance["mongod"]
+  port                = instance["port"]
+  replication_set     = instance["replication_set"]
+  additional_settings = instance["additional_settings"]
+    
+  # get rest setting from the instance, or the node
+  rest = instance["rest"]
+  if rest.nil? || rest == ""
+    rest = node.mongodb.rest
+  end
   
-  log "configuring #{mongod} on port #{port} as part of replication set #{replication_set}"
-  
+  # get monit from the instance, or the node
+  monit = instance["monit"]
+  if monit.nil? || monit == ""
+    monit = node.mongodb.monit.enabled
+  end
+    
   ["#{node[:mongodb][:log_dir]}/#{mongod}", 
    "#{node[:mongodb][:data_dir]}/#{mongod}",
    "#{node[:mongodb][:backup_dir]}/#{mongod}", 
@@ -72,10 +85,12 @@ mongods.each do |instance|
   template "/etc/mongodb/mongodb_#{mongod}.conf" do
     source "mongodb.conf.erb"
     variables(
-      :database_path   => "#{node[:mongodb][:data_dir]}/#{mongod}",
-      :port            => port,
-      :log_path        => "#{node[:mongodb][:log_dir]}/#{mongod}",
-      :replication_set => replication_set
+      :database_path       => "#{node[:mongodb][:data_dir]}/#{mongod}",
+      :port                => port,
+      :log_path            => "#{node[:mongodb][:log_dir]}/#{mongod}",
+      :rest                => rest,
+      :replication_set     => replication_set,
+      :additional_settings => additional_settings
     )
     owner "root"
     group "root"
@@ -87,7 +102,7 @@ mongods.each do |instance|
     action :start
   end
   
-  if node[:mongodb][:monit][:enabled] then
+  if monit == "true" || monit == true
     # set-up monit
     template "/etc/monit.d/monit_mongo_#{mongod}" do
       source "monit_mongo.erb"

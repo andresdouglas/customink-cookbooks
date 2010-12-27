@@ -22,7 +22,7 @@ mongods.each do |instance|
   end
 
   # link in so that the script gets run hourly
-  if run_backups == "true"
+  if run_backups == "true" || run_backups == true
     link "/etc/cron.hourly/mongo_hourly_backup_#{mongod}.sh" do
       to "#{node[:mongodb][:root]}/bin/mongo_hourly_backup_#{mongod}.sh"
     end
