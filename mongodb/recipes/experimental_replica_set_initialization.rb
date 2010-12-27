@@ -1,6 +1,6 @@
 # Replica set configuration
 # find all nodes running mongo in this environment
-mongo_nodes = search(:node, %Q{run_list:"recipe[mongodb::configure]" AND environment:#{node.environment}})
+mongo_nodes = search(:node, %Q{run_list:"role[mongodb_server]" AND environment:#{node.environment}})
 
 replica_sets = []
 mongo_nodes.uniq.compact.each do |mongo_node|
