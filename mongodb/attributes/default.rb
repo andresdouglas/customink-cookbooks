@@ -18,10 +18,6 @@ set_unless[:mongodb][:pid_dir]    = "/var/run"
 set_unless[:mongodb][:run_backups] = false
 set_unless[:mongodb][:rest]        = false
 
-set_unless[:mongodb][:monit][:enabled]    = false
-set_unless[:mongodb][:monit][:max_memory] = 1024 #MB
-set_unless[:mongodb][:monit][:max_cpu]    = 80 #%
-
 set_unless[:mongodb][:mongods] = []
 
 # Typical mongod ports:
