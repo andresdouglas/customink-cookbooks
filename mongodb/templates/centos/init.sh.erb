@@ -18,8 +18,8 @@ PATH=<%= @node[:mongodb][:root] %>/bin:/sbin:/bin:/usr/sbin:/usr/bin
 exec=<%= @node[:mongodb][:root] %>/bin/mongod
 prog=mongod
 config=<%= @configuration_file %>
-pidfile=<%= @node[:mongodb][:data_dir] %>/<%= @application %>/mongod.lock
-lockfile="/var/lock/mongod_<%= @application %>"
+pidfile=<%= @node[:mongodb][:data_dir] %>/<%= @mongod %>/mongod.lock
+lockfile=/var/lock/mongod_<%= @mongod %>
 
 # [ -e $config ] && . $config
 

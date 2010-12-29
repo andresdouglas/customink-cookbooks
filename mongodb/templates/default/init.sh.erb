@@ -37,8 +37,8 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=<%= @node[:mongodb][:root] %>/bin/mongod
 CONFIG_FILE=<%= @configuration_file %>
-NAME=MongoDB
-DESC=database
+NAME=MongoDB_<%= @mongod %>
+DESC=<%= @mongod %>_database
 
 if test ! -x $DAEMON; then
     echo "Could not find $DAEMON"
@@ -47,12 +47,12 @@ fi
 
 . /lib/lsb/init-functions
 
-PIDFILE=<%= @node[:mongodb][:pid_dir] %>/mongodb_<%= @application %>.pid
+PIDFILE=<%= @node[:mongodb][:pid_dir] %>/mongodb_<%= @mongod %>.pid
 DIETIME=10                  # Time to wait for the server to die, in seconds
                             # If this value is set too low you might not
                         	# let some servers to die gracefully and
                             # 'restart' will not work
-
+STARTTIME=1
 DAEMON_OPTS="--config $CONFIG_FILE run"
 DAEMONUSER=<%= @node[:mongodb][:user] %>
 
@@ -264,5 +264,4 @@ case "$1" in
 	exit 1
 	;;
 esac
-
 exit 0

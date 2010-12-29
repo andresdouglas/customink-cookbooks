@@ -1,10 +1,13 @@
 #
-# Cookbook Name:: multi-mongodb
+# Cookbook Name:: mongodb
 # Recipe:: configure_backups
+#
+# Copyright 2010, CustomInk, LLC
+#
 
 # Add in the backup script
 mongods = node[:mongodb][:mongods]
-mongods.each do |instance|
+mongods.uniq.compact.each do |instance|
   mongod          = instance["mongod"]
   port            = instance["port"]
   run_backups     = instance["run_backups"]
@@ -22,7 +25,7 @@ mongods.each do |instance|
   end
 
   # link in so that the script gets run hourly
-  if run_backups == "true"
+  if run_backups == "true" || run_backups == true
     link "/etc/cron.hourly/mongo_hourly_backup_#{mongod}.sh" do
       to "#{node[:mongodb][:root]}/bin/mongo_hourly_backup_#{mongod}.sh"
     end
