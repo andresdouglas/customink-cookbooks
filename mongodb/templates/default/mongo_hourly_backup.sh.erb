@@ -21,7 +21,7 @@ fi
 cd $CUR_DIR
 echo -e "\n\n\n\n---------------Backup Begin--------------" > $LOG
 date >> $LOG
-<%= @node[:mongodb][:root] %>/bin/mongodump -h $BACKUP_HOST >> $LOG
+<%= @node[:mongodb][:binaries] %>/mongodump -h $BACKUP_HOST >> $LOG
 echo -e "---------------Backup End--------------" >> $LOG
 
 if [ $COMPRESS = "true" ]

@@ -13,7 +13,7 @@ mongods.uniq.compact.each do |instance|
   run_backups     = instance["run_backups"]
   backup_dir      = "#{node[:mongodb][:backup_dir]}/#{mongod}"
 
-  template "#{node[:mongodb][:root]}/bin/mongo_hourly_backup_#{mongod}.sh" do
+  template "#{node[:mongodb][:binaries]}/mongo_hourly_backup_#{mongod}.sh" do
     source "mongo_hourly_backup.sh.erb"
     variables(
       :port            => port,
@@ -27,7 +27,7 @@ mongods.uniq.compact.each do |instance|
   # link in so that the script gets run hourly
   if run_backups == "true" || run_backups == true
     link "/etc/cron.hourly/mongo_hourly_backup_#{mongod}.sh" do
-      to "#{node[:mongodb][:root]}/bin/mongo_hourly_backup_#{mongod}.sh"
+      to "#{node[:mongodb][:binaries]}/bin/mongo_hourly_backup_#{mongod}.sh"
     end
   end
 end
