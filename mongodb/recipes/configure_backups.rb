@@ -25,9 +25,10 @@ mongods.uniq.compact.each do |instance|
   end
 
   # link in so that the script gets run hourly
-  if run_backups == "true" || run_backups == true
+  if ((run_backups == true || run_backups == "true") && 
+      (node[:mongodb][:run_backups] == true || node[:mongodb][:run_backups] == "true"))
     link "/etc/cron.hourly/mongo_hourly_backup_#{mongod}.sh" do
-      to "#{node[:mongodb][:binaries]}/bin/mongo_hourly_backup_#{mongod}.sh"
+      to "#{node[:mongodb][:binaries]}/mongo_hourly_backup_#{mongod}.sh"
     end
   end
 end
