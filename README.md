@@ -2,11 +2,11 @@
 
 * mongodb - Installs and configures 1-n mongo instances for each node.
 
-# LICENSE and AUTHOR:
+# LICENSE and AUTHORS:
 
-Author:: Nathen Harvey (<nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
+### Authors:: Nathen Harvey (<nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
 
-Copyright:: 2010, CustomInk, LLC
+### Copyright:: 2010, CustomInk, LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
