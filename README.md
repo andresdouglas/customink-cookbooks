@@ -4,7 +4,7 @@
 
 # LICENSE and AUTHORS:
 
-Authors:: Nathen Harvey (<nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
+Authors:: Nathen Harvey (<mailto:nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
 
 Copyright:: 2010, CustomInk, LLC
 
