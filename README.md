@@ -1,8 +1,8 @@
-CustomInk Chef Cookbooks
+# CustomInk Chef Cookbooks
 
 * mongodb - Installs and configures 1-n mongo instances for each node.
 
-= LICENSE and AUTHOR:
+# LICENSE and AUTHOR:
 
 Author:: Nathen Harvey (<nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
 
