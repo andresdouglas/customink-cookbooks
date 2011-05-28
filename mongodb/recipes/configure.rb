@@ -106,7 +106,16 @@ mongods.uniq.compact.each do |instance|
     notifies :restart, resources(:service => "mongodb_#{mongod}")
   end
   
-  service "mongodb_#{mongod}" do
-    action :start
+  directory "/etc/logrotate.d" do
+    recursive true
+  end
+  template "/etc/logrotate.d/mongo_#{mongod}" do
+    source "mongo_logrotate.erb"
+    owner "root"
+    group "root"
+    mode   0644
+    variables(
+      :mongod => mongod
+    ) 
   end
 end
