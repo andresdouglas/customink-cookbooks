@@ -25,6 +25,8 @@ end
 user node[:mongodb][:user] do
   comment "MongoDB Server"
   gid node[:mongodb][:group]
+  supports :manage_home => true
+  home "/home/#{node[:mongodb][:user]}"
   action [ :create, :manage ]
 end
 
