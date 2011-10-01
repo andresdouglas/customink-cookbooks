@@ -46,4 +46,9 @@ when "debian","ubuntu"
 	  mode "0644"
 	  notifies :run, resources(:execute => "key-install"), :immediately
 	end
+	
+	# this might not be necessary
+	execute "update apt" do
+	  command "apt-get update"
+  end
 end
