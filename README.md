@@ -7,7 +7,7 @@
 
 Authors:: Nathen Harvey (<mailto:nharvey@customink.com>) and Jake Vanderdray (<jvanderdray@customink.com>)
 
-Copyright:: 2010, CustomInk, LLC
+Copyright:: 2011, CustomInk, LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
