@@ -23,6 +23,10 @@ when "redhat","centos","fedora","suse"
   package "Percona-Server-client-55"
   package "Percona-Server-devel-55"
 when "debian","ubuntu"
+  execute "update apt" do
+    command "apt-get update"
+  end
+
   package "percona-server-client-5.5"
   package "libmysqlclient-dev"
 end
