@@ -1,6 +1,7 @@
 # CustomInk Chef Cookbooks
 
 * mongodb - Installs and configures 1-n mongo instances for each node.
+* percona-install - Installs Percona apt/yum repository, server, and client
 
 # LICENSE and AUTHORS:
 
