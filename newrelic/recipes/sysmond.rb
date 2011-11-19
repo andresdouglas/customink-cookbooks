@@ -20,6 +20,12 @@ include_recipe "newrelic::repo"
 
 package "newrelic-sysmond"
 
+directory "/var/run/newrelic" do
+  recursive true
+  owner "root"
+  group "root"
+end
+
 execute "configure newrelic-sysmond" do
   command "nrsysmond-config --set license_key=#{node[:newrelic][:license_key]}"
 end
