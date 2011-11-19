@@ -1,6 +1,7 @@
 # CustomInk Chef Cookbooks
 
 * mongodb - Installs and configures 1-n mongo instances for each node.
+* newrelic - Installs [New Relic Server Monitoring](http://newrelic.com/features/server-monitoring) and sets it up as a service running on the node.   Includes a monit cookbook to create a monit control file to watch after the service.
 * percona-install - Installs Percona apt/yum repository, server, and client
 
 # LICENSE and AUTHORS:
