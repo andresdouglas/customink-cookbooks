@@ -27,8 +27,8 @@ when "centos","redhat","fedora","suse"
 when "debian","ubuntu"
   execute "Newrelic key-install" do
     command <<-EOF
-      curl -L http://download.newrelic.com/debian/newrelic.list -o /etc/apt/sources.list.d/newrelic.list
-      curl -L http://download.newrelic.com/548C16BF.gpg | apt-key add -
+      wget http://download.newrelic.com/debian/newrelic.list -O /etc/apt/sources.list.d/newrelic.list
+      wget -qO - http://download.newrelic.com/548C16BF.gpg | apt-key add -
       apt-get update
     EOF
   end
