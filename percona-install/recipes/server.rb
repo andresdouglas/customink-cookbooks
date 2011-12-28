@@ -23,9 +23,10 @@ when "redhat","centos","fedora","suse"
   execute "remove conflicting mysql-libs" do
     command "rpm -e --nodeps mysql-libs "
   end
-
-  package "Percona-Server-server-55"
-  package "Percona-Server-devel-55"
+  
+  %w(Percona-Server-server-55 Percona-Server-devel-55 Percona-Server-shared-compat).each do |p|
+    package p
+  end
 when "debian","ubuntu"
   execute "update apt" do
     command "apt-get update"
