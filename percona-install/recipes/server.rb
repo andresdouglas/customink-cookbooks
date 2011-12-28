@@ -32,6 +32,29 @@ when "debian","ubuntu"
     command "apt-get update"
   end
 
-  package "percona-server-server-5.5"
-  package "libmysqlclient-dev"
+  %w(percona-server-server-5.5 libmysqlclient-dev).each do |p|
+    package p
+  end
+  
+  # Backup some debian files we'd like to replace
+  %w(debian-start debian.cnf).each do |deb|
+    execute "backup #{deb}" do
+      command "mv /etc/mysql/#{deb} /etc/mysql/#{deb}.orig"
+      not_if "ls /etc/mysql/#{deb}.orig"
+    end
+  end
+  
+  template "/etc/mysql/debian-start" do
+    source "debian-start.erb"
+    owner "root"
+    group "root"
+    mode 0755
+  end
+  
+  template "/etc/mysql/debian.cnf" do
+    source "debian.cnf.erb"
+    owner "root"
+    group "root"
+    mode 0600
+  end
 end
